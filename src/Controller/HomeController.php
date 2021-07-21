@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Avatar;
 use App\Form\AvatarType;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,13 +16,15 @@ class HomeController extends AbstractController
     /**
      * @Route("/modern", name="modern")
      */
-    public function modern(Request $request, EntityManagerInterface $entityManager): Response
+    public function modern(Request $request, EntityManagerInterface $entityManager, UserRepository $userRepository): Response
     {
+        $user = $userRepository->findOneByEmail('camille.martin@gmail.com');
 
-
-
+        dd($user->getResumes()->get(2)->getTemplate()->getTheme());
         return $this->render('home/modern.html.twig', [
             'theme' => 'copper',
+            'user' => $user
+
         ]);
     }
     /**

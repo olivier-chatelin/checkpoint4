@@ -15,18 +15,24 @@ class TemplateFixtures extends Fixture
         $template->setTheme('metal');
 
         $manager->persist($template);
+        $this->addReference('classic', $template);
 
         $template = new Template();
         $template->setName('modern');
         $template->setTheme('copper');
 
         $manager->persist($template);
+        $this->addReference('modern', $template);
+
 
         $template = new Template();
         $template->setName('premium');
         $template->setTheme('salmon');
 
         $manager->persist($template);
+        $this->addReference('premium', $template);
+
+
         $manager->flush();
 
 

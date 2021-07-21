@@ -42,6 +42,11 @@ class Scholarship
      */
     private $resume;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $school;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -103,6 +108,18 @@ class Scholarship
     public function setResume(?Resume $resume): self
     {
         $this->resume = $resume;
+
+        return $this;
+    }
+
+    public function getSchool(): ?string
+    {
+        return $this->school;
+    }
+
+    public function setSchool(?string $school): self
+    {
+        $this->school = $school;
 
         return $this;
     }
