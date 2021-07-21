@@ -23,11 +23,6 @@ class Template
     private $name;
 
     /**
-     * @ORM\Column(type="text", nullable=true)
-     */
-    private $html;
-
-    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $theme;
@@ -49,17 +44,6 @@ class Template
         return $this;
     }
 
-    public function getHtml(): ?string
-    {
-        return $this->html;
-    }
-
-    public function setHtml(?string $html): self
-    {
-        $this->html = $html;
-
-        return $this;
-    }
 
     public function getTheme(): ?string
     {

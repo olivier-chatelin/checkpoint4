@@ -25,11 +25,6 @@ class Resume
     private $name;
 
     /**
-     * @ORM\Column(type="text", nullable=true)
-     */
-    private $html;
-
-    /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="resumes")
      */
     private $user;
@@ -100,17 +95,6 @@ class Resume
         return $this;
     }
 
-    public function getHtml(): ?string
-    {
-        return $this->html;
-    }
-
-    public function setHtml(?string $html): self
-    {
-        $this->html = $html;
-
-        return $this;
-    }
 
     public function getUser(): ?User
     {
