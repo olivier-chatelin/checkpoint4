@@ -21,7 +21,7 @@ class HomeController extends AbstractController
 
 
         return $this->render('home/modern.html.twig', [
-//            'form' => $form->createView(),
+            'theme' => 'copper',
         ]);
     }
     /**
@@ -32,7 +32,8 @@ class HomeController extends AbstractController
 
 
         return $this->render('home/premium.html.twig', [
-//            'form' => $form->createView(),
+            'theme' => 'salmon',
+
         ]);
     }
 
@@ -44,7 +45,8 @@ class HomeController extends AbstractController
 
 
         return $this->render('home/classic.html.twig', [
-//            'form' => $form->createView(),
+            'theme' => 'tangerine',
+
         ]);
     }
 }

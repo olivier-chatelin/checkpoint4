@@ -8,7 +8,7 @@
 
 {% block body %}
     <div id="cv" class="row container  modern" >
-        <div class="col-4 color-back" id="aside">
+        <div class="col-4 bg-{{ theme }}" id="aside">
             <div class="photo-container d-flex justify-content-center mt-4">
                 <img src="https://thispersondoesnotexist.com/image" alt="" width="80% "class="rounded-circle justify" id="photo">
             </div>
@@ -17,13 +17,12 @@
             </div>
             <div id="personal-details text-light">
                 <h5 class="text-light mt-4 text-center">Détails personnels <hr> </h5>
-                <p id="name" class="text-light"><i class="fa-solid fa-user"></i>Camille Martin</p>
-                <p id="mail" class="text-light"><i class="fa-solid fa-envelope"></i>camille.martin@gmail.com</p>
-                <p id="phone" class="text-light"><i class="fa-solid fa-phone"></i>06 54 84 95 95</p>
-                <p id="address" class="text-light"><i class="fa-solid fa-house"></i>133 Avenue Thiers 33200 Bordeaux</p>
-                <p id="linkedin" class="text-light"><i class="fa-brands fa-linkedin-in"></i>https://www.linkedin.com/feed/</p>
-                <p id="github" class="text-light"><i class="fa-brands fa-github"></i>https://www.github.com/feed/</p>
-                <i class="fa-solid fa-user"></i>
+                <p id="name" class="text-light">Camille Martin</p>
+                <p id="mail" class="text-light">camille.martin@gmail.com</p>
+                <p id="phone" class="text-light">06 54 84 95 95</p>
+                <p id="address" class="text-light">133 Avenue Thiers 33200 Bordeaux</p>
+                <p id="linkedin" class="text-light">https://www.linkedin.com/feed/</p>
+                <p id="github" class="text-light">https://www.github.com/feed/</p>
             </div>
             <div id="languages">
                 <h5 class="text-light mt-4 text-center">Langues<hr> </h5>
@@ -46,7 +45,7 @@
         <div class="col-8" id="main">
             <div id="profile">
                  <h5 class="mt-4">Profil <hr></h5>
-                <p eêtclass="small">
+                <p class="small">
                     Actuellement Chef comptable, et fort de 10 ans d'expérience je recherche un cabinet qui pourra m'apporter épanouissement
                 </p>
 
@@ -54,12 +53,12 @@
             <div id="experience" >
                  <h5 class="mt-4">Expérience professionnelle <hr></h5>
                 <div class="d-flex flex-row justify-content-end small exp">
-                    <div  class="year color-text">2018-2021</div>
+                    <div  class="year text-{{theme}} ">2018-2021</div>
                     <div class="d-flex flex-column ">
                         <p class="job my-0">
                             Manager
                         </p>
-                        <p class="job-place color-text my-0">
+                        <p class="job-place text-{{theme}}  my-0">
                             Méga compta, Bordeaux
                         </p>
                         <p class="job-description mt-0 mb-2">
@@ -68,12 +67,12 @@
                     </div>
                 </div>
                 <div class="d-flex flex-row justify-content-end small exp mt-2">
-                    <div  class="year color-text">2018-2021</div>
+                    <div  class="year text-{{theme}} ">2018-2021</div>
                     <div class="d-flex flex-column ">
                         <p class="job my-0">
                             Manager
                         </p>
-                        <p class="job-place color-text my-0">
+                        <p class="job-place text-{{theme}}  my-0">
                             Méga compta, Bordeaux
                         </p>
                         <p class="job-description  mt-0 mb-2">
@@ -82,12 +81,12 @@
                     </div>
                 </div>
                 <div class="d-flex flex-row justify-content-end small exp mt-2">
-                    <div  class="year color-text">2018-2021</div>
+                    <div  class="year text-{{theme}} ">2018-2021</div>
                     <div class="d-flex flex-column ">
                         <p class="job my-0">
                             Manager
                         </p>
-                        <p class="job-place color-text my-0">
+                        <p class="job-place text-{{theme}}  my-0">
                             Méga compta, Bordeaux
                         </p>
                         <p class="job-description my-0">
@@ -108,12 +107,12 @@
             <div id="formation" >
                 <h5 class="mt-4">Formation <hr></h5>
                 <div class="d-flex flex-row justify-content-end small for">
-                    <div  class="year color-text">1996-1998</div>
+                    <div  class="year text-{{theme}} ">1996-1998</div>
                     <div class="d-flex flex-column ">
                         <p class="graduation my-0">
                             BTS Compta
                         </p>
-                        <p class="establishment color-text my-0">
+                        <p class="establishment text-{{theme}}  my-0">
                             Lycée Choiseul, Tours
                         </p>
                         <p class="formation-description mt-0 mb-2">
@@ -121,12 +120,12 @@
                     </div>
                 </div>
                 <div class="d-flex flex-row justify-content-end small for mb-5">
-                    <div  class="year color-text">1992-1995</div>
+                    <div  class="year text-{{theme}} ">1992-1995</div>
                     <div class="d-flex flex-column ">
                         <p class="graduation my-0">
                            Terminale S
                         </p>
-                        <p class="establishment color-text my-0">
+                        <p class="establishment text-{{theme}}  my-0">
                             Lycée Descartes, Tours
                         </p>
                         <p class="formation-description mt-0 mb-2">
