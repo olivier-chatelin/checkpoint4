@@ -27,11 +27,23 @@ class HomeController extends AbstractController
     /**
      * @Route("/premium", name="premium")
      */
-    public function index(Request $request, EntityManagerInterface $entityManager): Response
+    public function premium(Request $request, EntityManagerInterface $entityManager): Response
     {
 
 
-        return $this->render('premium/index.html.twig', [
+        return $this->render('home/premium.html.twig', [
+//            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/classic", name="classic")
+     */
+    public function classic(Request $request, EntityManagerInterface $entityManager): Response
+    {
+
+
+        return $this->render('home/classic.html.twig', [
 //            'form' => $form->createView(),
         ]);
     }

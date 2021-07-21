@@ -1,3 +1,4 @@
+//modern
 #cv{
   width: 21cm;
   height: 29.7cm;
@@ -9,8 +10,10 @@
 .color-text{
   color: #953B2C;
 }
-h5{
-  font-weight: bold;
+.modern{
+  h5{
+    font-weight: bold;
+  }
 }
 .small{
   font-size: 15px;
@@ -19,3 +22,18 @@ h5{
 .year{
   width: 50%;
 }
+//premium
+#title{
+  height: 100px;
+
+}
+.square{
+  list-style: square;
+}
+.color-back-premium{
+  background-color: #B69D96;
+}
+.color-text-premium{
+  color: #B69D96;
+}
+//classic
