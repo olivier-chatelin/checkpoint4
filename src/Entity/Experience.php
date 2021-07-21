@@ -42,6 +42,11 @@ class Experience
      */
     private $description;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Resume::class, inversedBy="experiences")
+     */
+    private $resume;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -103,6 +108,18 @@ class Experience
     public function setDescription(?string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getResume(): ?Resume
+    {
+        return $this->resume;
+    }
+
+    public function setResume(?Resume $resume): self
+    {
+        $this->resume = $resume;
 
         return $this;
     }

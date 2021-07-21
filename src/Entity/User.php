@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -44,6 +46,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Column(type="string", length=255)
      */
     private $lastname;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Resume::class, mappedBy="user")
+     */
+    private $resumes;
+
+    public function __construct()
+    {
+        $this->resumes = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -154,6 +166,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setLastname(string $lastname): self
     {
         $this->lastname = $lastname;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Resume[]
+     */
+    public function getResumes(): Collection
+    {
+        return $this->resumes;
+    }
+
+    public function addResume(Resume $resume): self
+    {
+        if (!$this->resumes->contains($resume)) {
+            $this->resumes[] = $resume;
+            $resume->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeResume(Resume $resume): self
+    {
+        if ($this->resumes->removeElement($resume)) {
+            // set the owning side to null (unless already changed)
+            if ($resume->getUser() === $this) {
+                $resume->setUser(null);
+            }
+        }
 
         return $this;
     }

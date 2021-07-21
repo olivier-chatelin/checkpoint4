@@ -37,6 +37,11 @@ class Scholarship
      */
     private $description;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Resume::class, inversedBy="scholarships")
+     */
+    private $resume;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -86,6 +91,18 @@ class Scholarship
     public function setDescription(?string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getResume(): ?Resume
+    {
+        return $this->resume;
+    }
+
+    public function setResume(?Resume $resume): self
+    {
+        $this->resume = $resume;
 
         return $this;
     }

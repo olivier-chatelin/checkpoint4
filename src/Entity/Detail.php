@@ -52,6 +52,11 @@ class Detail
      */
     private $github;
 
+    /**
+     * @ORM\OneToOne(targetEntity=Avatar::class, cascade={"persist", "remove"})
+     */
+    private $avatar;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -137,6 +142,18 @@ class Detail
     public function setGithub(?string $github): self
     {
         $this->github = $github;
+
+        return $this;
+    }
+
+    public function getAvatar(): ?Avatar
+    {
+        return $this->avatar;
+    }
+
+    public function setAvatar(?Avatar $avatar): self
+    {
+        $this->avatar = $avatar;
 
         return $this;
     }
