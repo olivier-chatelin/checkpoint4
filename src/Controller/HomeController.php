@@ -13,19 +13,25 @@ use Symfony\Component\Routing\Annotation\Route;
 class HomeController extends AbstractController
 {
     /**
-     * @Route("/", name="home")
+     * @Route("/modern", name="modern")
+     */
+    public function modern(Request $request, EntityManagerInterface $entityManager): Response
+    {
+
+
+
+        return $this->render('home/modern.html.twig', [
+//            'form' => $form->createView(),
+        ]);
+    }
+    /**
+     * @Route("/premium", name="premium")
      */
     public function index(Request $request, EntityManagerInterface $entityManager): Response
     {
-        $avatar = new Avatar();
-        $form = $this->createForm(AvatarType::class, $avatar);
-        $form->handleRequest($request);
-        if($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($avatar);
-            $entityManager->flush();
 
-        }
-        return $this->render('home/index.html.twig', [
+
+        return $this->render('premium/index.html.twig', [
 //            'form' => $form->createView(),
         ]);
     }
