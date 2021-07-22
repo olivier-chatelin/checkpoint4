@@ -2,8 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\Template;
+use App\Form\TemplateType;
 use App\Repository\UserRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -12,8 +16,15 @@ class ThemeController extends AbstractController
     /**
      * @Route("/theme", name="theme")
      */
-    public function show(UserRepository $userRepository): Response
+    public function show(UserRepository $userRepository, EntityManagerInterface $entityManager, Request $request): Response
     {
+        $template = new Template();
+        $form = $this->createForm(TemplateType::class, $template);
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($template);
+            $entityManager->flush();
+        }
         $user = $userRepository->findOneByEmail('camille.martin@gmail.com');
         $resume = $user->getResumes()->get(0);
         $view = 'theme/index.html.twig';
@@ -21,6 +32,7 @@ class ThemeController extends AbstractController
             'theme' => 'tangerine',
             'user' => $user,
             'resume' => $resume,
+            'form' => $form->createView(),
         ]);
     }
 }

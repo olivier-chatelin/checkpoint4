@@ -15,17 +15,17 @@
                 </div>
                 <div class="carousel-inner">
                     <div class="carousel-item active cvMin ">
-                        <button class="bg-veggie text-white select-profile">Choisir ce Modèle</button>
+                        <button class="bg-veggie text-white select-profile" data-template="classic">Choisir ce Modèle</button>
                         {% set theme = 'metal' %}
                         {% include 'components/_classic.html.twig' %}
                     </div>
                     <div class="carousel-item cvMin">
-                        <button class="bg-veggie text-white select-profile">Choisir ce Modèle</button>
+                        <button class="bg-veggie text-white select-profile" data-template="modern">Choisir ce Modèle</button>
                         {% set theme = 'copper' %}
                         {% include 'components/_modern.html.twig' %}
                     </div>
                     <div class="carousel-item cvMin">
-                        <button class="bg-veggie text-white select-profile">Choisir ce Modèle</button>
+                        <button class="bg-veggie text-white select-profile" data-template="salmon">Choisir ce Modèle</button>
                         {% set theme = 'salmon' %}
                         {% include 'components/_premium.html.twig' %}
 
@@ -43,7 +43,6 @@
         </div>
         <h5 class="text-white">Choix du thème</h5>
         <div id="theme-selector">
-
             <span data-theme="salmon" class="rounded-circle bg-salmon dot"></span>
             <span data-theme="veggie" class="rounded-circle bg-veggie dot"></span>
             <span data-theme="tangerine" class="rounded-circle bg-tangerine dot"></span>
@@ -52,5 +51,8 @@
             <span data-theme="copper" class="rounded-circle bg-copper dot"></span>
         </div>
     </div>
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
     <button class="next-step bg-veggie text-white">Prochaine étape</button>
+    {{ form_end(form) }}
 {% endblock %}
