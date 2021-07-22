@@ -18,6 +18,7 @@ class HomeController extends AbstractController
      */
     public function index(UserRepository $userRepository): Response
     {
+        return $this->render('home/index.html.twig');
     }
 
 }
