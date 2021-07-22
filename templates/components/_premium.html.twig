@@ -1,0 +1,108 @@
+    <div id="cv" class=" premium " >
+        <div class="row mx-5" id="title">
+            <div class="col col-2  d-flex flex-column justify-content-end bg-{{theme}}">
+                <p class="mb-0 text-white text-center">CV</p>
+            </div>
+            <div class="col col-8 square d-flex flex-column justify-content-end text-{{theme}} ">
+                <h1 class="mb-0 text-center">{{ user.firstname }} {{ user.lastname }}</h1>
+            </div>
+        </div>
+        <div class="row mx-5 " id="header">
+            <div class="col col-2"></div>
+            <div class="col col-8 text-center">
+                {{ resume.detail.header }}
+            </div>
+        </div>
+        <div id="personal-details" class="mx-5 small">
+            <h5 class="mt-4 ">Détails personnels <hr> </h5>
+            <div class="d-flex justify-content-between">
+                <div class="text-{{theme}}  d-flex flex-column">
+                    <p>Nom</p>
+                    <p>Email</p>
+                    <p>Numéro de téléphone</p>
+                    <p>Adresse</p>
+                    <p>LinkedIn</p>
+                    <p>Github</p>
+                </div>
+                <div class="d-flex flex-column">
+                    <p>{{ user.firstname }} {{ user.lastname }}</p>
+                    <p>{{user.email}}</p>
+                    <p>{{ resume.detail.tel }}</p>
+                    <p>{{ resume.detail.address }} {{ resume.detail.zipCode }} {{ resume.detail.city }}</p>
+                    <p>{{ resume.detail.linkedin }}</p>
+                    <p>{{ resume.detail.github }}</p>
+                </div>
+                <img src="/uploads/images/users/{{ resume.detail.avatar.image }}" alt="" width="20%" height="20%" id="photo">
+            </div>
+            <div class="row">
+                <div id="profile">
+                    <h5 class="mt-4">Profil <hr></h5>
+                    <p class="small">
+                        {{ resume.profile.description }}
+                    </p>
+                <div id="skills" class="small">
+                    <h5 class="mt-4">Compétences<hr></h5>
+                    <ul>
+                        {% for skill in resume.skills %}
+                            <li class="text-{{theme}} square">{{ skill.name }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+                <div id="experience" >
+                    <h5 class="mt-4">Expérience professionnelle <hr></h5>
+                    {% for experience in resume.experiences %}
+                    <div class="d-flex flex-row justify-content-end small exp">
+                        <div  class="year text-{{theme}} ">{{ experience.yearStart | date('Y') }}-{{ experience.yearEnd | date('Y') }}</div>
+                        <div class="d-flex flex-column ">
+                            <p class="job my-0">
+                                {{ experience.jobName }}
+                            </p>
+                            <p class="job-place text-{{theme}} my-0">
+                                {{ experience.employer }}
+
+                            </p>
+                            <p class="job-description mt-0 mb-2">
+                                {{ experience.description }}
+                            </p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div id="formation" >
+                    <h5 class="mt-4">Formation <hr></h5>
+                    {% for study in resume.scholarships %}
+                    <div class="d-flex flex-row justify-content-end small for">
+                        <div  class="year text-{{ theme }}">{{ study.yearStart | date('Y') }}-{{ study.yearEnd | date('Y') }}</div>
+                        <div class="d-flex flex-column ">
+                            <p class="graduation my-0">
+                                {{ study.graduation }}
+                            </p>
+                            <p class="establishment text-{{theme}} my-0">
+                                {{ study.school }}
+                            </p>
+                            <p class="formation-description mt-0 mb-2">
+                                {{ study.description}}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div id="languages" >
+                    <h5 class="mt-4">Langues <hr></h5>
+                    <ul>
+                        {% for language in resume.languages %}
+                        <li class="text-{{theme}} square">{{ language.name }} {{ language.level }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div id="hobbies" >
+                    <h5 class="my-4">Centre d'intérêt <hr></h5>
+                    <ul>
+                        {% for hobby in resume.hobbies %}
+                        <li class="text-{{theme}} square">{{ hobby.name }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>

@@ -29,4 +29,18 @@ class HomeController extends AbstractController
             'resume' => $resume,
         ]);
     }
+    /**
+     * @Route("/templates", name="templates")
+     */
+    public function show(UserRepository $userRepository): Response
+    {
+        $user = $userRepository->findOneByEmail('camille.martin@gmail.com');
+        $resume = $user->getResumes()->get(0);
+        $view = 'home/showTemplates.html.twig';
+        return $this->render($view, [
+            'theme' => 'tangerine',
+            'user' => $user,
+            'resume' => $resume,
+        ]);
+    }
 }
