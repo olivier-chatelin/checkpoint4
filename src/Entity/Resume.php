@@ -69,6 +69,11 @@ class Resume
      */
     private $languages;
 
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $html;
+
     public function __construct()
     {
         $this->experiences = new ArrayCollection();
@@ -278,6 +283,18 @@ class Resume
     public function removeLanguage(Language $language): self
     {
         $this->languages->removeElement($language);
+
+        return $this;
+    }
+
+    public function getHtml(): ?string
+    {
+        return $this->html;
+    }
+
+    public function setHtml(?string $html): self
+    {
+        $this->html = $html;
 
         return $this;
     }

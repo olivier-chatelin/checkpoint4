@@ -52,8 +52,8 @@ body{
 //theme
 .cvMin{
   max-height: 60vh;
-  transform: scale(0.6);
-  //overflow-y: scroll;
+  //transform: scale(0.9);
+  overflow-y: scroll;
   //margin-top: -50px;
   //width: 200px;
 
@@ -95,6 +95,9 @@ body{
   bottom: 100px;
   right: 20px;
   width: 200px;
+}
+.resume{
+  background-color: #ffffff;
 }
 
 
