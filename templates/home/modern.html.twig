@@ -8,36 +8,37 @@
 
 {% block body %}
     <div id="cv" class="row container  modern" >
-        <div class="col-4 bg-{{ theme }}" id="aside">
+        <div class="col-4 bg-{{ theme }} text-white" id="aside">
             <div class="photo-container d-flex justify-content-center mt-4">
-                <img src="https://thispersondoesnotexist.com/image" alt="" width="80% "class="rounded-circle justify" id="photo">
+                <img src="/uploads/images/users/{{ resume.detail.avatar.image }}" alt="" width="80% "class="rounded-circle justify" id="photo">
             </div>
             <div class="text-light text-center mt-4" id="header" >
-                Expert Comptable
+                {{ resume.detail.header }}
             </div>
             <div id="personal-details text-light">
                 <h5 class="text-light mt-4 text-center">Détails personnels <hr> </h5>
-                <p id="name" class="text-light">Camille Martin</p>
-                <p id="mail" class="text-light">camille.martin@gmail.com</p>
-                <p id="phone" class="text-light">06 54 84 95 95</p>
-                <p id="address" class="text-light">133 Avenue Thiers 33200 Bordeaux</p>
-                <p id="linkedin" class="text-light">https://www.linkedin.com/feed/</p>
-                <p id="github" class="text-light">https://www.github.com/feed/</p>
+                <p id="name" class="text-light">{{ user.firstname }} {{ user.lastname }}</p>
+                <p id="mail" class="text-light">{{ user.email}}</p>
+                <p id="phone" class="text-light">{{ resume.detail.tel }}</p>
+                <p id="address" class="text-light">{{ resume.detail.address }} {{ resume.detail.zipCode }} {{ resume.detail.city }}</p>
+                <p id="linkedin" class="text-light">{{ resume.detail.linkedin }}</p>
+                <p id="github" class="text-light">{{ resume.detail.github }}</p>
             </div>
             <div id="languages">
                 <h5 class="text-light mt-4 text-center">Langues<hr> </h5>
                 <ul>
-                    <li class="text-light">Anglais Lu, Parlé</li>
-                    <li class="text-light">Espagnol  Lu, Parlé</li>
+                    {% for language in resume.languages %}
+                    <li class="text-light">{{ language.name }} {{ language.level }}</li>
+                    {% endfor %}
                 </ul>
 
             </div>
             <div id="hobbies">
                 <h5 class="text-light mt-4 text-center">Centre d'intérêt<hr> </h5>
                 <ul>
-                    <li class="text-light">Voyages</li>
-                    <li class="text-light">Cuisine</li>
-                    <li class="text-light">Fourmis</li>
+                    {% for hobby in resume.hobbies %}
+                    <li class="text-light">{{ hobby.name }}</li>
+                    {% endfor %}
                 </ul>
 
             </div>
@@ -46,92 +47,57 @@
             <div id="profile">
                  <h5 class="mt-4">Profil <hr></h5>
                 <p class="small">
-                    Actuellement Chef comptable, et fort de 10 ans d'expérience je recherche un cabinet qui pourra m'apporter épanouissement
+                    {{ resume.profile.description }}
                 </p>
 
             </div>
             <div id="experience" >
                  <h5 class="mt-4">Expérience professionnelle <hr></h5>
-                <div class="d-flex flex-row justify-content-end small exp">
-                    <div  class="year text-{{theme}} ">2018-2021</div>
-                    <div class="d-flex flex-column ">
-                        <p class="job my-0">
-                            Manager
-                        </p>
-                        <p class="job-place text-{{theme}}  my-0">
-                            Méga compta, Bordeaux
-                        </p>
-                        <p class="job-description mt-0 mb-2">
-                            Actuellement Chef comptable, et fort de 10 ans d'expérience je recherche un cabinet qui pourra m'apporter épanouissement
-                        </p>
+                {% for experience in resume.experiences %}
+                    <div class="d-flex flex-row justify-content-end small exp">
+                        <div  class="year text-{{theme}} ">{{ experience.yearStart | date('Y') }}-{{ experience.yearEnd | date('Y') }}</div>
+                        <div class="d-flex flex-column ">
+                            <p class="job my-0">
+                                {{ experience.jobName }}
+                            </p>
+                            <p class="job-place text-{{theme}}  my-0">
+                                {{experience.employer}}
+                            </p>
+                            <p class="job-description mt-0 mb-2">
+                                {{experience.description}}
+
+                            </p>
+                        </div>
                     </div>
-                </div>
-                <div class="d-flex flex-row justify-content-end small exp mt-2">
-                    <div  class="year text-{{theme}} ">2018-2021</div>
-                    <div class="d-flex flex-column ">
-                        <p class="job my-0">
-                            Manager
-                        </p>
-                        <p class="job-place text-{{theme}}  my-0">
-                            Méga compta, Bordeaux
-                        </p>
-                        <p class="job-description  mt-0 mb-2">
-                            Actuellement Chef comptable, et fort de 10 ans d'expérience je recherche un cabinet qui pourra m'apporter épanouissement
-                        </p>
-                    </div>
-                </div>
-                <div class="d-flex flex-row justify-content-end small exp mt-2">
-                    <div  class="year text-{{theme}} ">2018-2021</div>
-                    <div class="d-flex flex-column ">
-                        <p class="job my-0">
-                            Manager
-                        </p>
-                        <p class="job-place text-{{theme}}  my-0">
-                            Méga compta, Bordeaux
-                        </p>
-                        <p class="job-description my-0">
-                            Actuellement Chef comptable, et fort de 10 ans d'expérience je recherche un cabinet qui pourra m'apporter épanouissement
-                        </p>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
             <div id="skills" class="small">
                 <h5 class="mt-4">Compétences<hr></h5>
 
                 <ul>
-                    <li>PHP</li>
-                    <li>JS</li>
-                    <li>Bootstrap</li>
+                    {% for skill in resume.skills %}
+                        <li>{{ skill.name }}</li>
+                    {% endfor %}
                 </ul>
             </div>
             <div id="formation" >
                 <h5 class="mt-4">Formation <hr></h5>
-                <div class="d-flex flex-row justify-content-end small for">
-                    <div  class="year text-{{theme}} ">1996-1998</div>
-                    <div class="d-flex flex-column ">
-                        <p class="graduation my-0">
-                            BTS Compta
-                        </p>
-                        <p class="establishment text-{{theme}}  my-0">
-                            Lycée Choiseul, Tours
-                        </p>
-                        <p class="formation-description mt-0 mb-2">
-                            Haec igitur Epicuri non probo, inquam. De cetero vellem equidem aut ipse doctrinis fuisset instructior est enim,
+                {% for study in resume.scholarships %}
+                    <div class="d-flex flex-row justify-content-end small for">
+                        <div  class="year text-{{theme}} ">{{ study.yearStart | date('Y') }}-{{ study.yearEnd | date('Y') }}</div>
+                        <div class="d-flex flex-column ">
+                            <p class="graduation my-0">
+                                {{ study.graduation }}
+
+                            </p>
+                            <p class="establishment text-{{theme}}  my-0">
+                                {{ study.school }}
+                            </p>
+                            <p class="formation-description mt-0 mb-2">
+                                {{ study.description }}
+                        </div>
                     </div>
-                </div>
-                <div class="d-flex flex-row justify-content-end small for mb-5">
-                    <div  class="year text-{{theme}} ">1992-1995</div>
-                    <div class="d-flex flex-column ">
-                        <p class="graduation my-0">
-                           Terminale S
-                        </p>
-                        <p class="establishment text-{{theme}}  my-0">
-                            Lycée Descartes, Tours
-                        </p>
-                        <p class="formation-description mt-0 mb-2">
-                            Haec igitur Epicuri non probo, inquam. De cetero vellem equidem aut ipse doctrinis fuisset instructior est enim,
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
     </div>

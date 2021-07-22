@@ -14,42 +14,19 @@ use Symfony\Component\Routing\Annotation\Route;
 class HomeController extends AbstractController
 {
     /**
-     * @Route("/modern", name="modern")
+     * @Route("/", name="home")
      */
-    public function modern(Request $request, EntityManagerInterface $entityManager, UserRepository $userRepository): Response
+    public function index(UserRepository $userRepository): Response
     {
         $user = $userRepository->findOneByEmail('camille.martin@gmail.com');
-
-        dd($user->getResumes()->get(2)->getTemplate()->getTheme());
-        return $this->render('home/modern.html.twig', [
-            'theme' => 'copper',
-            'user' => $user
-
-        ]);
-    }
-    /**
-     * @Route("/premium", name="premium")
-     */
-    public function premium(Request $request, EntityManagerInterface $entityManager): Response
-    {
-
-
-        return $this->render('home/premium.html.twig', [
-            'theme' => 'salmon',
-
-        ]);
-    }
-
-    /**
-     * @Route("/classic", name="classic")
-     */
-    public function classic(Request $request, EntityManagerInterface $entityManager): Response
-    {
-
-
-        return $this->render('home/classic.html.twig', [
+        $resume = $user->getResumes()->get(1);
+        $template = $resume->getTemplate();
+        $view = 'home/' . $template->getName() . '.html.twig';
+        return $this->render($view, [
+//            'theme' => $template->getTheme(),
             'theme' => 'tangerine',
-
+            'user' => $user,
+            'resume' => $resume,
         ]);
     }
 }

@@ -13,13 +13,13 @@
                 <p class="mb-0 text-white text-center">CV</p>
             </div>
             <div class="col col-8 square d-flex flex-column justify-content-end text-{{theme}} ">
-                <h1 class="mb-0 text-center">Camille Martin</h1>
+                <h1 class="mb-0 text-center">{{ user.firstname }} {{ user.lastname }}</h1>
             </div>
         </div>
         <div class="row mx-5 " id="header">
             <div class="col col-2"></div>
             <div class="col col-8 text-center">
-                Expert Comptable
+                {{ resume.detail.header }}
             </div>
         </div>
         <div id="personal-details" class="mx-5 small">
@@ -34,104 +34,82 @@
                     <p>Github</p>
                 </div>
                 <div class="d-flex flex-column">
-                    <p>Camille Martin</p>
-                    <p>camille.martin@gmail.com</p>
-                    <p>06 54 84 95 95</p>
-                    <p>133 Avenue Thiers 33200 Bordeaux</p>
-                    <p>https://www.linkedin.com/feed/</p>
-                    <p>https://www.github.com/feed/</p>
+                    <p>{{ user.firstname }} {{ user.lastname }}</p>
+                    <p>{{user.email}}</p>
+                    <p>{{ resume.detail.tel }}</p>
+                    <p>{{ resume.detail.address }} {{ resume.detail.zipCode }} {{ resume.detail.city }}</p>
+                    <p>{{ resume.detail.linkedin }}</p>
+                    <p>{{ resume.detail.github }}</p>
                 </div>
-                <img src="https://thispersondoesnotexist.com/image" alt="" width="150px" height="150px" id="photo">
+                <img src="/uploads/images/users/{{ resume.detail.avatar.image }}" alt="" width="150px" height="150px" id="photo">
             </div>
             <div class="row">
                 <div id="profile">
                     <h5 class="mt-4">Profil <hr></h5>
                     <p class="small">
-                        Actuellement Chef comptable, et fort de 10 ans d'expérience je recherche un cabinet qui pourra m'apporter épanouissement
+                        {{ resume.profile.description }}
                     </p>
                 <div id="skills" class="small">
                     <h5 class="mt-4">Compétences<hr></h5>
                     <ul>
-                        <li class="text-{{theme}} square">PHP</li>
-                        <li class="text-{{theme}} square">JS</li>
-                        <li class="text-{{theme}} square">Bootstrap</li>
+                        {% for skill in resume.skills %}
+                            <li class="text-{{theme}} square">{{ skill.name }}</li>
+                        {% endfor %}
                     </ul>
                 </div>
             </div>
                 <div id="experience" >
                     <h5 class="mt-4">Expérience professionnelle <hr></h5>
+                    {% for experience in resume.experiences %}
                     <div class="d-flex flex-row justify-content-end small exp">
-                        <div  class="year text-{{theme}} ">2018-2021</div>
+                        <div  class="year text-{{theme}} ">{{ experience.yearStart | date('Y') }}-{{ experience.yearEnd | date('Y') }}</div>
                         <div class="d-flex flex-column ">
                             <p class="job my-0">
-                                Manager
+                                {{ experience.jobName }}
                             </p>
                             <p class="job-place text-{{theme}} my-0">
-                                Méga compta, Bordeaux
+                                {{ experience.employer }}
+
                             </p>
                             <p class="job-description mt-0 mb-2">
-                                Actuellement Chef comptable, et fort de 10 ans d'expérience je recherche un cabinet qui pourra m'apporter épanouissement
+                                {{ experience.description }}
                             </p>
                         </div>
                     </div>
-                    <div class="d-flex flex-row justify-content-end small exp mt-2">
-                        <div  class="year text-{{theme}} ">2018-2021</div>
-                        <div class="d-flex flex-column ">
-                            <p class="job my-0">
-                                Manager
-                            </p>
-                            <p class="job-place text-{{theme}}  my-0">
-                                Méga compta, Bordeaux
-                            </p>
-                            <p class="job-description  mt-0 mb-2">
-                                Actuellement Chef comptable, et fort de 10 ans d'expérience je recherche un cabinet qui pourra m'apporter épanouissement
-                            </p>
-                        </div>
-                    </div>
-                    <div class="d-flex flex-row justify-content-end small exp mt-2">
-                        <div  class="year text-{{theme}} ">2018-2021</div>
-                        <div class="d-flex flex-column ">
-                            <p class="job my-0">
-                                Manager
-                            </p>
-                            <p class="job-place text-{{theme}} my-0">
-                                Méga compta, Bordeaux
-                            </p>
-                            <p class="job-description my-0">
-                                Actuellement Chef comptable, et fort de 10 ans d'expérience je recherche un cabinet qui pourra m'apporter épanouissement
-                            </p>
-                        </div>
-                    </div>
+                    {% endfor %}
                 </div>
                 <div id="formation" >
                     <h5 class="mt-4">Formation <hr></h5>
+                    {% for study in resume.scholarships %}
                     <div class="d-flex flex-row justify-content-end small for">
-                        <div  class="year text-{{ theme }}">1996-1998</div>
+                        <div  class="year text-{{ theme }}">{{ study.yearStart | date('Y') }}-{{ study.yearEnd | date('Y') }}</div>
                         <div class="d-flex flex-column ">
                             <p class="graduation my-0">
-                                BTS Compta
+                                {{ study.graduation }}
                             </p>
                             <p class="establishment text-{{theme}} my-0">
-                                Lycée Choiseul, Tours
+                                {{ study.school }}
                             </p>
                             <p class="formation-description mt-0 mb-2">
-                                Haec igitur Epicuri non probo, inquam. De cetero vellem equidem aut ipse doctrinis fuisset instructior est enim,
+                                {{ study.description}}
                         </div>
                     </div>
+                    {% endfor %}
                 </div>
                 <div id="languages" >
                     <h5 class="mt-4">Langues <hr></h5>
                     <ul>
-                        <li class="text-{{theme}} square">Anglais Lu, Parlé</li>
-                        <li class="text-{{theme}} square">Espagnol Lu, Parlé</li>
+                        {% for language in resume.languages %}
+                        <li class="text-{{theme}} square">{{ language.name }} {{ language.level }}</li>
+                        {% endfor %}
                     </ul>
                 </div>
                 <div id="hobbies" >
                     <h5 class="my-4">Centre d'intérêt <hr></h5>
                     <ul>
-                        <li class="text-{{theme}} square">Voyages</li>
-                        <li class="text-{{theme}} square">Cuisine</li>
-                        <li class="text-{{theme}} square">Fourmis</li>
+                        {% for hobby in resume.hobbies %}
+                        <li class="text-{{theme}} square">{{ hobby.name }}</li>
+                        {% endfor %}
                     </ul>
                 </div>
             </div>
