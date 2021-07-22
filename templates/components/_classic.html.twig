@@ -17,10 +17,14 @@
             <div class="d-flex flex-column">
                 <p>{{ user.firstname }} {{ user.lastname }}</p>
                 <p>{{user.email}}</p>
-                <p>{{ resume.detail.tel }}</p>
-                <p>{{ resume.detail.address }} {{ resume.detail.zipCode }} {{ resume.detail.city }}</p>
-                <p>{{ resume.detail.linkedin }}</p>
-                <p>{{ resume.detail.github }}</p>
+                <p id="tel">{{ resume.detail.tel }}</p>
+                <p>
+                    <span id="address"> {{ resume.detail.address }}</span>
+                    <span id="zipCode">{{ resume.detail.zipCode }} </span>
+                    <span id="city">{{ resume.detail.city }}</span>
+                </p>
+                <p id="linkedin">{{ resume.detail.linkedin }}</p>
+                <p id=github">{{ resume.detail.github }}</p>
             </div>
             <img src="/uploads/images/users/{{ resume.detail.avatar.image }}" alt="" width="20%" height="20%" id="photo">
         </div>

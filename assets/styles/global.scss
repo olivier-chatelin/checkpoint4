@@ -9,7 +9,6 @@
 }
 //modern
 #cv{
-  //width: 21cm;
   //height: 29.7cm;
   //margin: 20px auto;
   //overflow: scroll;
@@ -82,8 +81,8 @@ body{
   position: absolute;
   font-weight: bold;
   font-size: 20px;
-  top: -50px;
   right: 0;
+  z-index: 5;
   width: 200px;
 
 
@@ -98,6 +97,10 @@ body{
 }
 .resume{
   background-color: #ffffff;
+}
+.cvMin{
+  width: 30vw;
+
 }
 
 

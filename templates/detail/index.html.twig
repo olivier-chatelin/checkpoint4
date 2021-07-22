@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détails personnels{% endblock %}
+  {% block javascripts %}
+      {{ parent() }}
+      {{ encore_entry_script_tags('detail') }}
+  {% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col col-4 text-white d-flex flex-column justify-content-around align-items-end" >
+                <div>
+
+                {{ form_start(form) }}
+                </div>
+                {{ form_row(form.avatar) }}
+                {{ form_row(form.header) }}
+                {{ form_row(form.address) }}
+                {{ form_row(form.zipCode) }}
+                {{ form_row(form.city) }}
+                {{ form_row(form.tel) }}
+                {{ form_row(form.linkedin) }}
+                {{ form_row(form.github) }}
+                <button class="btn btn-veggie next-step">Prochaine étape</button>
+                {{ form_end(form) }}
+            </div>
+            <div class="col col-7 offset-1">
+
+
+                {% if  resume.template.name == 'classic' %}
+                    {% include  'components/_classic.html.twig'%}
+                {% endif %}
+
+                {% if  resume.template.name == 'modern' %}
+                    {% include  'components/_modern.html.twig'%}
+                {% endif %}
+
+                {% if  resume.template.name == 'premium' %}
+                    {% include  'components/_premium.html.twig'%}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

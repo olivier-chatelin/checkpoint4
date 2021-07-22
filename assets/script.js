@@ -8,8 +8,8 @@ for (const dot of dots) {
         inputTheme.value=dot.dataset.theme;
     })
 }
-for (const template of selectProfiles) {
-    template.addEventListener('click', (e) => {
-        inputName.value = template.dataset.template;
+for (const profile of selectProfiles) {
+    profile.addEventListener('click', (e) => {
+        inputName.value = profile.dataset.template;
     })
 }

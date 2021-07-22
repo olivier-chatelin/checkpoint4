@@ -10,8 +10,12 @@
                 <h5 class="text-light mt-4 text-center">Détails personnels <hr> </h5>
                 <p id="name" class="text-light">{{ user.firstname }} {{ user.lastname }}</p>
                 <p id="mail" class="text-light">{{ user.email}}</p>
-                <p id="phone" class="text-light">{{ resume.detail.tel }}</p>
-                <p id="address" class="text-light">{{ resume.detail.address }} {{ resume.detail.zipCode }} {{ resume.detail.city }}</p>
+                <p id="tel" class="text-light">{{ resume.detail.tel }}</p>
+                <p class="text-light">
+                    <span id="address"> {{ resume.detail.address }}</span>
+                    <span id="zipCode">{{ resume.detail.zipCode }} </span>
+                    <span id="city">{{ resume.detail.city }}</span>
+                </p>
                 <p id="linkedin" class="text-light">{{ resume.detail.linkedin }}</p>
                 <p id="github" class="text-light">{{ resume.detail.github }}</p>
             </div>

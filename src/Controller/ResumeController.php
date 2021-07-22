@@ -20,6 +20,7 @@ class ResumeController extends AbstractController
         return $this->render('resume/index.html.twig', [
             'resumes' => $resumes,
             'user' => $this->getUser(),
+
         ]);
     }
 }

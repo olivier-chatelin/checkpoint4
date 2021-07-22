@@ -6,7 +6,6 @@
       {{ encore_entry_script_tags('show') }}
   {% endblock %}
 {% block body %}
-    <h1 class="text-white text-center">Bienvenue {{ app.user.firstname }}</h1>
 <div class="container d-flex">
     {% for resume in resumes %}
     <div class="cvMin">
@@ -30,8 +29,12 @@
                 {% include  'components/_premium.html.twig'%}
             {% endif %}
             </div>
-    </div>
+        </div>
+        {% else %}
+            <div class="d-flex justify-content-center">
+                <h2 class="text-white position-absolute top-50 end-50 ">Pas de CV enregistré </h2>
+            </div>
         {% endfor %}
-</div>
-    <a class="btn btn-veggie next-step">Créer un nouveu CV</a>
+    </div>
+    <a class="btn btn-veggie text-white next-step" href="{{ path('theme') }}">Créer un nouveu CV</a>
 {% endblock %}
