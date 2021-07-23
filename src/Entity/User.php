@@ -50,7 +50,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $lastname;
 
     /**
-     * @ORM\OneToMany(targetEntity=Resume::class, mappedBy="user")
+     * @ORM\OneToMany(targetEntity=Resume::class, mappedBy="user",cascade={"persist"})
      */
     private $resumes;
 

@@ -43,7 +43,7 @@ class Experience
     private $description;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Resume::class, inversedBy="experiences")
+     * @ORM\ManyToOne(targetEntity=Resume::class, inversedBy="experiences",cascade={"persist"})
      */
     private $resume;
 

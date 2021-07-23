@@ -47,25 +47,10 @@ class ThemeController extends AbstractController
             $profile = new Profile();
             $entityManager->persist($profile);
             $resume->setProfile($profile);
-            $experience = new Experience();
-            $entityManager->persist($experience);
-            $resume->addExperience($experience);
-            $skill = new Skill();
-            $entityManager->persist($skill);
-            $resume->addSkill($skill);
-            $scholarship = new Scholarship();
-            $entityManager->persist($scholarship);
-            $resume->addScholarship($scholarship);
-            $hobby = new Hobby();
-            $entityManager->persist($hobby);
-            $resume->addHobby($hobby);
-            $language = new Language();
-            $entityManager->persist($language);
-            $resume->addLanguage($language);
-            $resume->setUser($this->getUser());
             $entityManager->persist($resume);
             $entityManager->flush();
             $session->set('resume', $resume);
+
 
             return $this->redirectToRoute('detail');
         }

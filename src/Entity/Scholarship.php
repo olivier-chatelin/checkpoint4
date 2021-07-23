@@ -38,7 +38,7 @@ class Scholarship
     private $description;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Resume::class, inversedBy="scholarships")
+     * @ORM\ManyToOne(targetEntity=Resume::class, inversedBy="scholarships",cascade={"persist"})
      */
     private $resume;
 

@@ -2,8 +2,9 @@
 
 namespace App\Controller;
 
-use App\Entity\Avatar;
-use App\Form\DetailType;
+use App\Entity\Experience;
+use App\Form\ExperienceType;
+use App\Form\ResumeExpType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -11,25 +12,25 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
-class DetailController extends AbstractController
+class ExperienceController extends AbstractController
 {
     /**
-     * @Route("/detail", name="detail")
+     * @Route("/experience", name="experience")
      */
     public function index(Request $request, EntityManagerInterface $entityManager, SessionInterface $session): Response
     {
+        $user = $this->getUser();
         $resume = $session->get('resume');
-        $detail = $resume->getDetail();
-        $form = $this->createForm(DetailType::class, $detail);
+        $theme = $resume->getTemplate()->getTheme();
+        $experience = new Experience();
+        $form = $this->createForm(ExperienceType::class,$experience);
         $form->handleRequest($request);
-        if($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($detail);
-            $entityManager->flush();
-            return $this->redirectToRoute('profile');
+        if($form->isSubmitted() && $form->isValid()){
+            $resume->addExperience($experience);
         }
-        return $this->render('detail/index.html.twig', [
-            'user' => $this->getUser(),
-            'theme' => $resume->getTemplate()->getTheme(),
+        return $this->render('experience/index.html.twig', [
+            'user' => $user,
+            'theme' => $theme,
             'resume' => $resume,
             'form' => $form->createView(),
         ]);

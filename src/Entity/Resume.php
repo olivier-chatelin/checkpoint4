@@ -25,7 +25,7 @@ class Resume
     private $name;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="resumes")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="resumes",cascade={"persist"})
      */
     private $user;
 
@@ -45,27 +45,27 @@ class Resume
     private $profile;
 
     /**
-     * @ORM\OneToMany(targetEntity=Experience::class, mappedBy="resume")
+     * @ORM\OneToMany(targetEntity=Experience::class, mappedBy="resume",cascade={"persist"})
      */
     private $experiences;
 
     /**
-     * @ORM\OneToMany(targetEntity=Skill::class, mappedBy="resume")
+     * @ORM\OneToMany(targetEntity=Skill::class, mappedBy="resume",cascade={"persist"})
      */
     private $skills;
 
     /**
-     * @ORM\OneToMany(targetEntity=Scholarship::class, mappedBy="resume")
+     * @ORM\OneToMany(targetEntity=Scholarship::class, mappedBy="resume",cascade={"persist"})
      */
     private $scholarships;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Hobby::class)
+     * @ORM\ManyToMany(targetEntity=Hobby::class,cascade={"persist"})
      */
     private $hobbies;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Language::class)
+     * @ORM\ManyToMany(targetEntity=Language::class,cascade={"persist"})
      */
     private $languages;
 

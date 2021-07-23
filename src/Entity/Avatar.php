@@ -24,7 +24,7 @@ class Avatar
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $image;
+    private $image = "avatar.jpeg";
 
     /**
      * @Vich\UploadableField(mapping="user_images", fileNameProperty="image")

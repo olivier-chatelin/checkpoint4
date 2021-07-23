@@ -23,7 +23,7 @@ class Skill
     private $name;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Resume::class, inversedBy="skills")
+     * @ORM\ManyToOne(targetEntity=Resume::class, inversedBy="skills",cascade={"persist"})
      */
     private $resume;
 

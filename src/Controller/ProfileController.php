@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Avatar;
 use App\Form\ProfileType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -23,6 +24,9 @@ class ProfileController extends AbstractController
         $profile = $resume->getProfile();
         $form = $this->createForm(ProfileType::class, $profile);
         $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()){
+            return $this->redirectToRoute('experience');
+        }
         return $this->render('profile/index.html.twig', [
             'user' => $user,
             'theme' => $theme,
