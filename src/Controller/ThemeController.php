@@ -38,7 +38,7 @@ class ThemeController extends AbstractController
             $resume = new Resume();
             $resume->setTemplate($template);
             $avatar = new Avatar();
-            $avatar->setImage('avatar.jpeg');
+            $avatar->setImage('profil.jpeg');
             $entityManager->persist($avatar);
             $detail =new Detail();
             $detail->setAvatar($avatar);
