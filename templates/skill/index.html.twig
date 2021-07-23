@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 {% form_theme form 'bootstrap_5_layout.html.twig' %}
-{% block title %}Expérience{% endblock %}
+{% block title %}Compétences{% endblock %}
   {% block javascripts %}
       {{ parent() }}
       {{ encore_entry_script_tags('experience') }}
@@ -16,7 +16,7 @@
                 </div>
                 {{ form_widget(form) }}
                 <button type="submit" id="button-experience" class="add_item_link btn btn-veggie" data-collection-holder-class="experiences">Ajouter une Experience</button>
-                <a href="{{ path('skill') }}" class="btn btn-veggie next-step">Prochaine étape</a>
+                <a href="{{ path(skill) }}" class="btn btn-veggie next-step">Prochaine étape</a>
                 {{ form_end(form) }}
             </div>
             <div class="col col-7 offset-1">
