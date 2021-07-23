@@ -29,7 +29,7 @@ class SkillController extends AbstractController
         if($form->isSubmitted() && $form->isValid()){
             $resume->addSkill($skill);
         }
-        return $this->render('experience/index.html.twig', [
+        return $this->render('skill/index.html.twig', [
             'user' => $user,
             'theme' => $theme,
             'resume' => $resume,

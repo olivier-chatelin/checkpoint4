@@ -29,7 +29,7 @@ class LanguageController extends AbstractController
         if($form->isSubmitted() && $form->isValid()){
             $resume->addLanguage($language);
         }
-        return $this->render('hobby/index.html.twig', [
+        return $this->render('language/index.html.twig', [
             'user' => $user,
             'theme' => $theme,
             'resume' => $resume,
