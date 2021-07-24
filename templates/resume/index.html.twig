@@ -10,7 +10,7 @@
     {% for resume in resumes %}
     <div class="cvMin">
         <button class="btn btn-veggie text-white upload" data-resume="{{ resume.id }}">Imprimer</button>
-        <button class="btn btn-tangerine text-white" data-resume="{{ resume.id }}">Modifier</button>
+        <button class="btn btn-tangerine text-white"  data-resume="{{ resume.id }}">Modifier</button>
             <div id="resume{{ resume.id }}" class="resume">
 
             {% if  resume.template.name == 'classic' %}

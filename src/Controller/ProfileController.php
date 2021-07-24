@@ -27,11 +27,13 @@ class ProfileController extends AbstractController
         if($form->isSubmitted() && $form->isValid()){
             return $this->redirectToRoute('experience');
         }
-        return $this->render('profile/index.html.twig', [
+        return $this->render('components/_main.html.twig', [
             'user' => $user,
             'theme' => $theme,
             'resume' => $resume,
             'form' => $form->createView(),
+            'next' => 'Expériences'
+
         ]);
     }
 }

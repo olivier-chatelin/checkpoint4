@@ -28,12 +28,16 @@ class LanguageController extends AbstractController
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
             $resume->addLanguage($language);
+            return $this->redirectToRoute('hobby');
+
         }
-        return $this->render('language/index.html.twig', [
+        return $this->render('components/_main.html.twig', [
             'user' => $user,
             'theme' => $theme,
             'resume' => $resume,
             'form' => $form->createView(),
+            'next' => 'Centres d\'intérêts'
+
         ]);
     }
 }

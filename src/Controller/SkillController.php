@@ -28,12 +28,16 @@ class SkillController extends AbstractController
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
             $resume->addSkill($skill);
+            return $this->redirectToRoute('scholarship');
+
         }
-        return $this->render('skill/index.html.twig', [
+        return $this->render('components/_main.html.twig', [
             'user' => $user,
             'theme' => $theme,
             'resume' => $resume,
             'form' => $form->createView(),
+            'next' => 'Formations'
+
         ]);
     }
 }

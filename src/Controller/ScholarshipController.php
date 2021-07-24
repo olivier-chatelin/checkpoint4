@@ -28,12 +28,16 @@ class ScholarshipController extends AbstractController
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
             $resume->addScholarship($scholarship);
+            return $this->redirectToRoute('language');
+
         }
-        return $this->render('scholarship/index.html.twig', [
+        return $this->render('components/_main.html.twig', [
             'user' => $user,
             'theme' => $theme,
             'resume' => $resume,
             'form' => $form->createView(),
+            'next' => 'Langues'
+
         ]);
     }
 }

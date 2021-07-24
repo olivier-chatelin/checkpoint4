@@ -62,6 +62,8 @@ class ThemeController extends AbstractController
             'user' => $user,
             'resume' => $resume,
             'form' => $form->createView(),
+            'next' => 'Détails Personnels'
+
         ]);
     }
 }

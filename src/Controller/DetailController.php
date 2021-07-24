@@ -27,11 +27,12 @@ class DetailController extends AbstractController
             $entityManager->flush();
             return $this->redirectToRoute('profile');
         }
-        return $this->render('detail/index.html.twig', [
+        return $this->render('components/_main.html.twig', [
             'user' => $this->getUser(),
             'theme' => $resume->getTemplate()->getTheme(),
             'resume' => $resume,
             'form' => $form->createView(),
+            'next' => 'Profil'
         ]);
     }
 }

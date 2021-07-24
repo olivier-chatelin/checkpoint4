@@ -27,12 +27,16 @@ class ExperienceController extends AbstractController
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
             $resume->addExperience($experience);
+            return $this->redirectToRoute('skill');
         }
-        return $this->render('experience/index.html.twig', [
+
+        return $this->render('components/_main.html.twig', [
             'user' => $user,
             'theme' => $theme,
             'resume' => $resume,
             'form' => $form->createView(),
+            'next' => 'Compétences'
+
         ]);
     }
 }
