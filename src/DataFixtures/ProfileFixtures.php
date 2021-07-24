@@ -22,6 +22,10 @@ class ProfileFixtures extends Fixture
         $profile->setDescription('Actuellement Chef comptable, et forte de 10 ans d\'expérience je recherche un cabinet qui pourra m\'apporter épanouissement. ');
         $manager->persist($profile);
         $this->addReference('profileCamille3', $profile);
+        $profile = new Profile();
+        $profile->setDescription(' ');
+        $manager->persist($profile);
+        $this->addReference('profileAno', $profile);
         $manager->flush();
     }
 }

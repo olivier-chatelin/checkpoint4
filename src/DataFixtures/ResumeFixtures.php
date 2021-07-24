@@ -58,6 +58,15 @@ class ResumeFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($resume);
         $this->addReference('cv3', $resume);
 
+        $resume = new Resume();
+        $resume
+            ->setName(' ')
+            ->setUser($this->getReference('anonymous'))
+            ->setDetail($this->getReference('detailAno'))
+            ->setProfile($this->getReference('profileAno'));
+        $manager->persist($resume);
+        $this->addReference('cvAnonymous', $resume);
+
         $manager->flush();
     }
 

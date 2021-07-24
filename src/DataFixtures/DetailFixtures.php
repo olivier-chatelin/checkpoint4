@@ -11,6 +11,10 @@ class DetailFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
+        $avatarAno = new Avatar();
+        $avatarAno->setImage('avatar.jpeg');
+        $manager->persist($avatarAno);
+
         $avatar1 = new Avatar();
         $avatar1->setImage('templateImage.jpeg');
         $manager->persist($avatar1);
@@ -59,6 +63,18 @@ class DetailFixtures extends Fixture
             ->setGithub('https://www.github.com/feed/');
         $manager->persist($detail);
         $this->addReference('detailCamille3', $detail);
+        $detail = new Detail();
+        $detail
+            ->setAvatar($avatarAno)
+            ->setHeader(' ')
+            ->setAddress(' ')
+            ->setZipCode(' ')
+            ->setCity(' ')
+            ->setTel(' ')
+            ->setLinkedin(' ')
+            ->setGithub(' ');
+        $manager->persist($detail);
+        $this->addReference('detailAno', $detail);
 
 
 
