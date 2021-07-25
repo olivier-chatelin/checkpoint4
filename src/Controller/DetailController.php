@@ -35,7 +35,11 @@ class DetailController extends AbstractController
             'theme' => $resume->getTemplate()->getTheme(),
             'resume' => $resume,
             'form' => $form->createView(),
-            'next' => 'Profil'
+            'next' => 'Profil',
+            'previous' => 'Modèle',
+            'previous_href' => 'theme',
+
+
         ]);
     }
 }

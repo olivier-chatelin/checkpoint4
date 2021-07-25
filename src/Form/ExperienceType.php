@@ -22,11 +22,13 @@ class ExperienceType extends AbstractType
             ->add('employer',TextType::class,[
                 'label'=>'Employeur'
             ])
-            ->add('yearStart',BirthdayType::class,[
-                'label'=>'Date de début'
+            ->add('yearStart',DateType::class,[
+                'label'=>'Date de début',
+                'widget'=>'single_text'
             ])
-            ->add('yearEnd',BirthdayType::class,[
-                'label'=>'Date de fin'
+            ->add('yearEnd',DateType::class,[
+                'label'=>'Date de fin',
+                'widget'=>'single_text'
             ])
             ->add('description', TextareaType::class,[
                 'label' => 'description du poste'

@@ -36,7 +36,10 @@ class SkillController extends AbstractController
             'theme' => $resume->getTemplate()->getTheme(),
             'resume' => $resume,
             'form' => $form->createView(),
-            'next' => 'Formations'
+            'next' => 'Formations',
+            'previous' => 'Experiences',
+            'previous_href' => 'experience',
+
 
         ]);
     }

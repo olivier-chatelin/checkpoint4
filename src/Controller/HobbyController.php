@@ -36,7 +36,10 @@ class HobbyController extends AbstractController
             'theme' => $resume->getTemplate()->getTheme(),
             'resume' => $resume,
             'form' => $form->createView(),
-            'next' => 'Sauvegarder le cv'
+            'next' => 'Sauvegarder le cv',
+            'previous' => 'Langues',
+            'previous_href' => 'language',
+
 
         ]);
     }

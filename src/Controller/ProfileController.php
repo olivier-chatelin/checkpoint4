@@ -33,7 +33,10 @@ class ProfileController extends AbstractController
             'theme' => $resume->getTemplate()->getTheme(),
             'resume' => $resume,
             'form' => $form->createView(),
-            'next' => 'Expériences'
+            'next' => 'Expériences',
+            'previous' => 'Details Personnels',
+            'previous_href' => 'detail',
+
 
         ]);
     }

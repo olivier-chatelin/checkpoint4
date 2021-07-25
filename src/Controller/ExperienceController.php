@@ -35,7 +35,10 @@ class ExperienceController extends AbstractController
             'theme' => $resume->getTemplate()->getTheme(),
             'resume' => $resume,
             'form' => $form->createView(),
-            'next' => 'Compétences'
+            'next' => 'Compétences',
+            'previous' => 'Profil',
+            'previous_href' => 'profile',
+
 
         ]);
     }

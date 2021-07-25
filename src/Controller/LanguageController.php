@@ -36,7 +36,10 @@ class LanguageController extends AbstractController
             'theme' => $resume->getTemplate()->getTheme(),
             'resume' => $resume,
             'form' => $form->createView(),
-            'next' => 'Centres d\'intérêts'
+            'next' => 'Centres d\'intérêts',
+            'previous' => 'Formations',
+            'previous_href' => 'scholarship',
+
 
         ]);
     }

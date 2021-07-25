@@ -27,41 +27,30 @@ use Symfony\Component\Routing\Annotation\Route;
 class ThemeController extends AbstractController
 {
     /**
-     * @Route("/theme", name="theme")
+     * @Route("/theme/{id}", name="theme")
      */
-    public function show(UserRepository $userRepository, EntityManagerInterface $entityManager, Request $request, SessionInterface $session, ResumeRepository $resumeRepository): Response
+    public function show(UserRepository $userRepository, EntityManagerInterface $entityManager, Request $request, Resume $resume): Response
     {
         $template = new Template();
         $form = $this->createForm(TemplateType::class, $template);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($template);
-            $resume = new Resume();
             $resume->setTemplate($template);
-            $entityManager->persist($resume);
-            $user = $this->getUser();
-            $user->addResume($resume);
-            $detail = new Detail();
-            $entityManager->persist($detail);
-            $avatar = new Avatar();
-            $entityManager->persist($avatar);
-            $profile = new Profile();
-            $entityManager->persist($profile);
-            $resume->setProfile($profile);
-            $detail->setAvatar($avatar);
-            $resume->setDetail($detail);
             $entityManager->flush();
             return $this->redirectToRoute('detail',['id'=>$resume->getId()]);
         }
         $user = $userRepository->findOneByEmail('camille.martin@gmail.com');
-        $resume = $user->getResumes()->get(0);
+        $resumeTemplate = $user->getResumes()->get(0);
         $view = 'theme/index.html.twig';
         return $this->render($view, [
             'theme' => 'tangerine',
             'user' => $user,
-            'resume' => $resume,
+            'resume' => $resumeTemplate,
             'form' => $form->createView(),
-            'next' => 'Détails Personnels'
+            'next' => 'Détails Personnels',
+            'previous' => 'Accueil',
+            'previous_href' => 'resume_show',
 
         ]);
     }

@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Scholarship;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -18,11 +19,13 @@ class ScholarshipType extends AbstractType
             ->add('graduation',TextType::class,[
                 'label'=>'Diplôme'
             ])
-            ->add('yearStart',BirthdayType::class,[
-                'label'=>'Début'
+            ->add('yearStart',DateType::class,[
+                'label'=>'Début',
+                'widget'=>'single_text'
             ])
-            ->add('yearEnd',BirthdayType::class,[
-                'label'=>'Fin'
+            ->add('yearEnd',DateType::class,[
+                'label'=>'Fin',
+                'widget'=>'single_text'
             ])
             ->add('description', TextareaType::class,[
                 'label'=>'description'

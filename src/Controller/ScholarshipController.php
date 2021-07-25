@@ -36,7 +36,10 @@ class ScholarshipController extends AbstractController
             'theme' => $resume->getTemplate()->getTheme(),
             'resume' => $resume,
             'form' => $form->createView(),
-            'next' => 'Langues'
+            'next' => 'Langues',
+            'previous' => 'Compétences',
+            'previous_href' => 'skill',
+
 
         ]);
     }

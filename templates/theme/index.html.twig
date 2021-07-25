@@ -54,6 +54,7 @@
     </div>
     {{ form_start(form) }}
     {{ form_widget(form) }}
-    <button class="next-step bg-veggie text-white">{{next}}</button>
+    <button class="next-step btn btn-veggie text-white">{{next}}</button>
+    <a href="{{ path(previous_href) }}" class="previous-step btn btn-veggie text-white">{{previous}}</a>
     {{ form_end(form) }}
 {% endblock %}
