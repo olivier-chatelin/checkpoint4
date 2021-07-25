@@ -55,6 +55,6 @@
     {{ form_start(form) }}
     {{ form_widget(form) }}
     <button class="next-step btn btn-veggie text-white">{{next}}  <i class="fas fa-arrow-right"></i></button>
-    <a href="{{ path(previous_href) }}" class="previous-step btn btn-veggie text-white"><i class="fas fa-home"></i>  {{previous}}</a>
+    <a href="{{ path(previous_href,{id:resume.id}) }}" class="previous-step btn btn-veggie text-white"><i class="fas fa-arrow-left"></i>  {{previous}}</a>
     {{ form_end(form) }}
 {% endblock %}

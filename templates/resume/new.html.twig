@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+{% form_theme form 'bootstrap_5_layout.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+
+{% block body %}
+    <div class="d-flex flex-column container">
+            <h2 class="text-center text-white fw-bold">Nom du cv</h2>
+        <div id="name-form" class="text-white w-25">
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <button class="next-step btn btn-veggie text-white">{{next}}  <i class="fas fa-arrow-right"></i></button>
+            <a href="{{ path(previous_href) }}" class="previous-step btn btn-veggie text-white"><i class="fas fa-home"></i>  {{previous}}</a>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

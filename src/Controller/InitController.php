@@ -32,6 +32,6 @@ class InitController extends AbstractController
         $user = $this->getUser();
         $user->addResume($resume);
         $entityManager->flush();
-        return $this->redirectToRoute('theme',['id'=>$resume->getId()]);
+        return $this->redirectToRoute('resume_new',['id'=>$resume->getId()]);
     }
 }

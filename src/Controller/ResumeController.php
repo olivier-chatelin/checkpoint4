@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Resume;
+use App\Form\ResumeType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -36,5 +37,30 @@ class ResumeController extends AbstractController
             $entityManager->flush();
         }
         return $this->redirectToRoute('resume_show');
+    }
+
+    /**
+     * @Route("/new/{id}", name="_new")
+     */
+    public function add(Resume $resume, Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $form = $this->createForm(ResumeType::class,$resume);
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()){
+            $entityManager->flush();
+            return $this->redirectToRoute('theme',['id'=>$resume->getId()]);
+
+        }
+
+        return $this->render('resume/new.html.twig', [
+            'user' => $this->getUser(),
+            'resume' => $resume,
+            'form' => $form->createView(),
+            'next' => 'Choix du modèle',
+            'previous' => 'Mes CV',
+            'previous_href' => 'resume_show',
+
+
+        ]);
     }
 }

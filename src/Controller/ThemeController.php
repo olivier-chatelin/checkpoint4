@@ -44,14 +44,13 @@ class ThemeController extends AbstractController
         $resumeTemplate = $user->getResumes()->get(0);
         $view = 'theme/index.html.twig';
         return $this->render($view, [
-            'theme' => 'tangerine',
             'user' => $user,
             'resume' => $resumeTemplate,
             'form' => $form->createView(),
             'next' => 'Détails Personnels',
             'fa' => 'fas fa-arrow-right',
-            'previous' => 'Accueil',
-            'previous_href' => 'resume_show',
+            'previous' => 'Nom du cv',
+            'previous_href' => 'resume_new',
 
         ]);
     }
