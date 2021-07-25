@@ -31,7 +31,7 @@ class ThemeController extends AbstractController
      */
     public function show(UserRepository $userRepository, EntityManagerInterface $entityManager, Request $request, Resume $resume): Response
     {
-        $template = new Template();
+        if (!isset($template)) $template = new Template();
         $form = $this->createForm(TemplateType::class, $template);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()) {

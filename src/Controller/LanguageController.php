@@ -21,7 +21,7 @@ class LanguageController extends AbstractController
      */
     public function index(Request $request, EntityManagerInterface $entityManager, Resume $resume): Response
     {
-        $language = new Language();
+        if (!isset($language)) $language = new Language();
         $form = $this->createForm(LanguageType::class,$language);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){

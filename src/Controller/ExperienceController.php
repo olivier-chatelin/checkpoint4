@@ -20,7 +20,7 @@ class ExperienceController extends AbstractController
      */
     public function index(Request $request, Resume $resume, EntityManagerInterface $entityManager): Response
     {
-        $experience = new Experience();
+        if (!isset($experience)) $experience = new Experience();
         $form = $this->createForm(ExperienceType::class,$experience);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){

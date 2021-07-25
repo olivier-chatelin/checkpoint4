@@ -21,7 +21,7 @@ class ScholarshipController extends AbstractController
      */
     public function index(Request $request, EntityManagerInterface $entityManager, Resume $resume): Response
     {
-        $scholarship = new Scholarship();
+        if (!isset($scholarship)) $scholarship = new Scholarship();
         $form = $this->createForm(ScholarshipType::class,$scholarship);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){

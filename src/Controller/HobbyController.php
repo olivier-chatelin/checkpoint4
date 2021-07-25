@@ -21,7 +21,7 @@ class HobbyController extends AbstractController
      */
     public function index(Request $request, EntityManagerInterface $entityManager, Resume $resume): Response
     {
-        $hobby = new Hobby();
+        if (!isset($hobby)) $hobby = new Hobby();
         $form = $this->createForm(HobbyType::class,$hobby);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){

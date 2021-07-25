@@ -21,7 +21,7 @@ class SkillController extends AbstractController
      */
     public function index(Request $request, EntityManagerInterface $entityManager, Resume $resume): Response
     {
-        $skill = new Skill();
+        if (!isset($skill)) $skill = new Skill();
         $form = $this->createForm(SkillType::class,$skill);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
