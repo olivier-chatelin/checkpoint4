@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Avatar;
+use App\Entity\Detail;
+use App\Entity\Resume;
 use App\Form\DetailType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -14,18 +16,19 @@ use Symfony\Component\Routing\Annotation\Route;
 class DetailController extends AbstractController
 {
     /**
-     * @Route("/detail", name="detail")
+     * @Route("/detail/{id}", name="detail")
      */
-    public function index(Request $request, EntityManagerInterface $entityManager, SessionInterface $session): Response
+    public function index(Request $request, EntityManagerInterface $entityManager, Resume $resume): Response
     {
-        $resume = $session->get('resume');
+
         $detail = $resume->getDetail();
         $form = $this->createForm(DetailType::class, $detail);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($detail);
+            $resume->setDetail($detail);
             $entityManager->flush();
-            return $this->redirectToRoute('profile');
+            return $this->redirectToRoute('profile',['id'=>$resume->getId()]);
         }
         return $this->render('components/_main.html.twig', [
             'user' => $this->getUser(),

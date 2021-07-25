@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Resume;
 use App\Entity\Scholarship;
 use App\Form\ExperienceType;
 use App\Form\ResumeExpType;
@@ -16,24 +17,23 @@ use Symfony\Component\Routing\Annotation\Route;
 class ScholarshipController extends AbstractController
 {
     /**
-     * @Route("/scholarship", name="scholarship")
+     * @Route("/scholarship/{id}", name="scholarship")
      */
-    public function index(Request $request, EntityManagerInterface $entityManager, SessionInterface $session): Response
+    public function index(Request $request, EntityManagerInterface $entityManager, Resume $resume): Response
     {
-        $user = $this->getUser();
-        $resume = $session->get('resume');
-        $theme = $resume->getTemplate()->getTheme();
         $scholarship = new Scholarship();
         $form = $this->createForm(ScholarshipType::class,$scholarship);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
+            $entityManager->persist($scholarship);
             $resume->addScholarship($scholarship);
-            return $this->redirectToRoute('language');
+            $entityManager->flush();
+            return $this->redirectToRoute('language',['id'=>$resume->getId()]);
 
         }
         return $this->render('components/_main.html.twig', [
-            'user' => $user,
-            'theme' => $theme,
+            'user' => $this->getUser(),
+            'theme' => $resume->getTemplate()->getTheme(),
             'resume' => $resume,
             'form' => $form->createView(),
             'next' => 'Langues'

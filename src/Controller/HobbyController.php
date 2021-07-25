@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Hobby;
+use App\Entity\Resume;
 use App\Entity\Skill;
 use App\Form\HobbyType;
 use App\Form\SkillType;
@@ -16,24 +17,23 @@ use Symfony\Component\Routing\Annotation\Route;
 class HobbyController extends AbstractController
 {
     /**
-     * @Route("/hobby", name="hobby")
+     * @Route("/hobby/{id}", name="hobby")
      */
-    public function index(Request $request, EntityManagerInterface $entityManager, SessionInterface $session): Response
+    public function index(Request $request, EntityManagerInterface $entityManager, Resume $resume): Response
     {
-        $user = $this->getUser();
-        $resume = $session->get('resume');
-        $theme = $resume->getTemplate()->getTheme();
         $hobby = new Hobby();
         $form = $this->createForm(HobbyType::class,$hobby);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
+            $entityManager->persist($hobby);
             $resume->addHobby($hobby);
-            return $this->redirectToRoute('save');
+            $entityManager->flush();
+            return $this->redirectToRoute('resume_show');
 
         }
         return $this->render('components/_main.html.twig', [
-            'user' => $user,
-            'theme' => $theme,
+            'user' => $this->getUser(),
+            'theme' => $resume->getTemplate()->getTheme(),
             'resume' => $resume,
             'form' => $form->createView(),
             'next' => 'Sauvegarder le cv'

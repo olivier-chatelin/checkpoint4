@@ -24,13 +24,17 @@ class Avatar
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $image = "avatar.jpeg";
+    private $image;
 
     /**
      * @Vich\UploadableField(mapping="user_images", fileNameProperty="image")
      * @var File
      */
     private $imageFile;
+    public function __construct()
+    {
+        $this->image="avatar.jpeg";
+    }
 
     /**
      * @return File

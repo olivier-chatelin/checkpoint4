@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Experience;
+use App\Entity\Resume;
 use App\Entity\Skill;
 use App\Form\ExperienceType;
 use App\Form\SkillType;
@@ -16,24 +17,23 @@ use Symfony\Component\Routing\Annotation\Route;
 class SkillController extends AbstractController
 {
     /**
-     * @Route("/skill", name="skill")
+     * @Route("/skill/{id}", name="skill")
      */
-    public function index(Request $request, EntityManagerInterface $entityManager, SessionInterface $session): Response
+    public function index(Request $request, EntityManagerInterface $entityManager, Resume $resume): Response
     {
-        $user = $this->getUser();
-        $resume = $session->get('resume');
-        $theme = $resume->getTemplate()->getTheme();
         $skill = new Skill();
         $form = $this->createForm(SkillType::class,$skill);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
+            $entityManager->persist($skill);
             $resume->addSkill($skill);
-            return $this->redirectToRoute('scholarship');
+            $entityManager->flush();
+            return $this->redirectToRoute('scholarship',['id'=>$resume->getId()]);
 
         }
         return $this->render('components/_main.html.twig', [
-            'user' => $user,
-            'theme' => $theme,
+            'user' => $this->getUser(),
+            'theme' => $resume->getTemplate()->getTheme(),
             'resume' => $resume,
             'form' => $form->createView(),
             'next' => 'Formations'

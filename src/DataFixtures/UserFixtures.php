@@ -38,7 +38,7 @@ class UserFixtures extends Fixture
         $user = new User();
         $user->setFirstname(' ');
         $user->setLastname(' ');
-        $user->setEmail('anonymous@anonymous.ano');
+        $user->setEmail(User::ANONYMOUS_MAIL);
         $user->setPassword($this->encoder->encodePassword($user, '123456'));
         $user->setRoles(['ROLE_USER']);
         $this->addReference('anonymous', $user);

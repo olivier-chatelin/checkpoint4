@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Experience;
+use App\Entity\Resume;
 use App\Form\ExperienceType;
 use App\Form\ResumeExpType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -15,24 +16,23 @@ use Symfony\Component\Routing\Annotation\Route;
 class ExperienceController extends AbstractController
 {
     /**
-     * @Route("/experience", name="experience")
+     * @Route("/experience/{id}", name="experience")
      */
-    public function index(Request $request, EntityManagerInterface $entityManager, SessionInterface $session): Response
+    public function index(Request $request, Resume $resume, EntityManagerInterface $entityManager): Response
     {
-        $user = $this->getUser();
-        $resume = $session->get('resume');
-        $theme = $resume->getTemplate()->getTheme();
         $experience = new Experience();
         $form = $this->createForm(ExperienceType::class,$experience);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
+            $entityManager->persist($experience);
             $resume->addExperience($experience);
-            return $this->redirectToRoute('skill');
+            $entityManager->flush();
+            return $this->redirectToRoute('skill', ['id'=>$resume->getId()]);
         }
 
         return $this->render('components/_main.html.twig', [
-            'user' => $user,
-            'theme' => $theme,
+            'user' => $this->getUser(),
+            'theme' => $resume->getTemplate()->getTheme(),
             'resume' => $resume,
             'form' => $form->createView(),
             'next' => 'Compétences'

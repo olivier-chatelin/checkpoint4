@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Hobby;
 use App\Entity\Language;
+use App\Entity\Resume;
 use App\Form\HobbyType;
 use App\Form\LanguageType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -16,24 +17,23 @@ use Symfony\Component\Routing\Annotation\Route;
 class LanguageController extends AbstractController
 {
     /**
-     * @Route("/language", name="language")
+     * @Route("/language/{id}", name="language")
      */
-    public function index(Request $request, EntityManagerInterface $entityManager, SessionInterface $session): Response
+    public function index(Request $request, EntityManagerInterface $entityManager, Resume $resume): Response
     {
-        $user = $this->getUser();
-        $resume = $session->get('resume');
-        $theme = $resume->getTemplate()->getTheme();
         $language = new Language();
         $form = $this->createForm(LanguageType::class,$language);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
+            $entityManager->persist($language);
             $resume->addLanguage($language);
-            return $this->redirectToRoute('hobby');
+            $entityManager->flush();
+            return $this->redirectToRoute('hobby',['id'=>$resume->getId()]);
 
         }
         return $this->render('components/_main.html.twig', [
-            'user' => $user,
-            'theme' => $theme,
+            'user' => $this->getUser(),
+            'theme' => $resume->getTemplate()->getTheme(),
             'resume' => $resume,
             'form' => $form->createView(),
             'next' => 'Centres d\'intérêts'

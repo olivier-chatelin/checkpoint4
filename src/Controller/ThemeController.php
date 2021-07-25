@@ -13,13 +13,14 @@ use App\Entity\Resume;
 use App\Entity\Scholarship;
 use App\Entity\Skill;
 use App\Entity\Template;
+use App\Entity\User;
 use App\Form\TemplateType;
+use App\Repository\ResumeRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -28,7 +29,7 @@ class ThemeController extends AbstractController
     /**
      * @Route("/theme", name="theme")
      */
-    public function show(UserRepository $userRepository, EntityManagerInterface $entityManager, Request $request, SessionInterface $session): Response
+    public function show(UserRepository $userRepository, EntityManagerInterface $entityManager, Request $request, SessionInterface $session, ResumeRepository $resumeRepository): Response
     {
         $template = new Template();
         $form = $this->createForm(TemplateType::class, $template);
@@ -37,22 +38,20 @@ class ThemeController extends AbstractController
             $entityManager->persist($template);
             $resume = new Resume();
             $resume->setTemplate($template);
-            $avatar = new Avatar();
-            $avatar->setImage('supercopter.jpeg');
-            $entityManager->persist($avatar);
-            $detail =new Detail();
-            $detail->setAvatar($avatar);
+            $entityManager->persist($resume);
+            $user = $this->getUser();
+            $user->addResume($resume);
+            $detail = new Detail();
             $entityManager->persist($detail);
-            $resume->setDetail($detail);
+            $avatar = new Avatar();
+            $entityManager->persist($avatar);
             $profile = new Profile();
             $entityManager->persist($profile);
             $resume->setProfile($profile);
-            $entityManager->persist($resume);
+            $detail->setAvatar($avatar);
+            $resume->setDetail($detail);
             $entityManager->flush();
-            $session->set('resume', $resume);
-
-
-            return $this->redirectToRoute('detail');
+            return $this->redirectToRoute('detail',['id'=>$resume->getId()]);
         }
         $user = $userRepository->findOneByEmail('camille.martin@gmail.com');
         $resume = $user->getResumes()->get(0);

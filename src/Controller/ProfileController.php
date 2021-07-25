@@ -2,34 +2,35 @@
 
 namespace App\Controller;
 
-use App\Entity\Avatar;
+use App\Entity\Profile;
+use App\Entity\Resume;
 use App\Form\ProfileType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 class ProfileController extends AbstractController
 {
     /**
-     * @Route("/profile", name="profile")
+     * @Route("/profile/{id}", name="profile")
      */
-    public function index(Request $request, EntityManagerInterface $entityManager, SessionInterface $session): Response
+    public function index(Request $request, EntityManagerInterface $entityManager,Resume $resume): Response
     {
-        $user = $this->getUser();
-        $resume = $session->get('resume');
-        $theme = $resume->getTemplate()->getTheme();
         $profile = $resume->getProfile();
         $form = $this->createForm(ProfileType::class, $profile);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
-            return $this->redirectToRoute('experience');
+            $entityManager->persist($profile);
+            $resume->setProfile($profile);
+            $entityManager->flush();
+            return $this->redirectToRoute('experience',['id'=>$resume->getId()]);
+
         }
         return $this->render('components/_main.html.twig', [
-            'user' => $user,
-            'theme' => $theme,
+            'user' => $this->getUser(),
+            'theme' => $resume->getTemplate()->getTheme(),
             'resume' => $resume,
             'form' => $form->createView(),
             'next' => 'Expériences'

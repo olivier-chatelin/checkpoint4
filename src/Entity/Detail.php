@@ -57,6 +57,17 @@ class Detail
      */
     private $avatar;
 
+    public function __construct()
+    {
+        $this->header = " ";
+        $this->address =" ";
+        $this->zipCode=" ";
+        $this->city=" ";
+        $this->tel=" ";
+        $this->linkedin=" ";
+        $this->github=" ";
+    }
+
     public function getId(): ?int
     {
         return $this->id;
