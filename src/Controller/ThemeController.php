@@ -51,6 +51,7 @@ class ThemeController extends AbstractController
             'fa' => 'fas fa-arrow-right',
             'previous' => 'Nom du cv',
             'previous_href' => 'resume_new',
+            'allow_add'=>false,
 
         ]);
     }

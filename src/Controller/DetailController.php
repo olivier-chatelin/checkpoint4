@@ -39,6 +39,8 @@ class DetailController extends AbstractController
             'fa' => 'fas fa-arrow-right',
             'previous' => 'Modèle',
             'previous_href' => 'theme',
+            'allow_add'=>false,
+
 
 
         ]);

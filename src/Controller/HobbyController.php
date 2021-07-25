@@ -28,8 +28,6 @@ class HobbyController extends AbstractController
             $entityManager->persist($hobby);
             $resume->addHobby($hobby);
             $entityManager->flush();
-            return $this->redirectToRoute('resume_show');
-
         }
         return $this->render('components/_main.html.twig', [
             'user' => $this->getUser(),
@@ -37,9 +35,13 @@ class HobbyController extends AbstractController
             'resume' => $resume,
             'form' => $form->createView(),
             'next' => 'Sauvegarder le cv',
+            'next_href' => 'resume_show',
             'fa' => 'fas fa-save',
             'previous' => 'Langues',
             'previous_href' => 'language',
+            'allow_add'=>true,
+            'add'=>'un loisir'
+
 
 
         ]);

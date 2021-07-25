@@ -28,8 +28,6 @@ class LanguageController extends AbstractController
             $entityManager->persist($language);
             $resume->addLanguage($language);
             $entityManager->flush();
-            return $this->redirectToRoute('hobby',['id'=>$resume->getId()]);
-
         }
         return $this->render('components/_main.html.twig', [
             'user' => $this->getUser(),
@@ -37,9 +35,13 @@ class LanguageController extends AbstractController
             'resume' => $resume,
             'form' => $form->createView(),
             'next' => 'Centres d\'intérêts',
+            'next_href' => 'hobby',
             'fa' => 'fas fa-arrow-right',
             'previous' => 'Formations',
             'previous_href' => 'scholarship',
+            'allow_add'=>true,
+            'add'=>'une langue'
+
 
 
         ]);

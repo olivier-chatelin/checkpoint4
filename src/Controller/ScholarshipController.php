@@ -28,7 +28,6 @@ class ScholarshipController extends AbstractController
             $entityManager->persist($scholarship);
             $resume->addScholarship($scholarship);
             $entityManager->flush();
-            return $this->redirectToRoute('language',['id'=>$resume->getId()]);
 
         }
         return $this->render('components/_main.html.twig', [
@@ -37,9 +36,13 @@ class ScholarshipController extends AbstractController
             'resume' => $resume,
             'form' => $form->createView(),
             'next' => 'Langues',
+            'next_href' => 'language',
             'fa' => 'fas fa-arrow-right',
             'previous' => 'Compétences',
             'previous_href' => 'skill',
+            'allow_add'=>true,
+            'add'=>'une formation'
+
 
 
         ]);

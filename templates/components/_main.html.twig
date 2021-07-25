@@ -4,21 +4,28 @@
 {% block title %}Détails personnels{% endblock %}
   {% block javascripts %}
       {{ parent() }}
+
       {{ encore_entry_script_tags('detail') }}
+      {{ encore_entry_script_tags('experience') }}
   {% endblock %}
 
 {% block body %}
     <div class="container">
         <div class="row">
             <div class="col col-4 text-white d-flex flex-column justify-content-around align-items-end" >
-                <div>
+                <div id="form_container">
 
                     {{ form_start(form) }}
-                </div>
                 {{ form_widget(form) }}
-                <button type="submit" class="btn btn-veggie text-white next-step">{{next}}  <i class="{{ fa }}"></i></button>
+                    {% if allow_add %}
+                        <button type="submit" class="btn btn-veggie text-white add"><i class="fas fa-plus-circle"></i> ajouter {{ add }}</button>
+                        <a href="{{ path(next_href,{id:resume.id}) }}" class="btn btn-veggie text-white next-step">{{next}}  <i class="{{ fa }}"></i></a>
+                    {% else %}
+                        <button type="submit" class="btn btn-veggie text-white next-step">{{next}}  <i class="{{ fa }}"></i></button>
+                    {% endif %}
                 {{ form_end(form) }}
                 <a href="{{ path(previous_href,{id:resume.id}) }}" class="btn btn-veggie text-white previous-step"><i class="fas fa-arrow-left"></i>  {{ previous }}</a>
+                </div>
             </div>
             <div class="col col-7 offset-1">
 

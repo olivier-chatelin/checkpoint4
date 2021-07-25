@@ -37,6 +37,8 @@ class ProfileController extends AbstractController
             'fa' => 'fas fa-arrow-right',
             'previous' => 'Details Personnels',
             'previous_href' => 'detail',
+            'allow_add'=>false,
+
 
 
         ]);

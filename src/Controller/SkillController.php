@@ -28,8 +28,6 @@ class SkillController extends AbstractController
             $entityManager->persist($skill);
             $resume->addSkill($skill);
             $entityManager->flush();
-            return $this->redirectToRoute('scholarship',['id'=>$resume->getId()]);
-
         }
         return $this->render('components/_main.html.twig', [
             'user' => $this->getUser(),
@@ -37,9 +35,12 @@ class SkillController extends AbstractController
             'resume' => $resume,
             'form' => $form->createView(),
             'next' => 'Formations',
+            'next_href' => 'scholarship',
             'fa' => 'fas fa-arrow-right',
             'previous' => 'Experiences',
             'previous_href' => 'experience',
+            'allow_add'=>true,
+            'add'=>'une compétence'
 
 
         ]);

@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Experience;
 use App\Entity\Resume;
 use App\Form\ExperienceType;
+use App\Form\ResExpType;
 use App\Form\ResumeExpType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -21,13 +22,14 @@ class ExperienceController extends AbstractController
     public function index(Request $request, Resume $resume, EntityManagerInterface $entityManager): Response
     {
         if (!isset($experience)) $experience = new Experience();
+
         $form = $this->createForm(ExperienceType::class,$experience);
+
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
             $entityManager->persist($experience);
             $resume->addExperience($experience);
             $entityManager->flush();
-            return $this->redirectToRoute('skill', ['id'=>$resume->getId()]);
         }
 
         return $this->render('components/_main.html.twig', [
@@ -36,9 +38,12 @@ class ExperienceController extends AbstractController
             'resume' => $resume,
             'form' => $form->createView(),
             'next' => 'Compétences',
+            'next_href' => 'skill',
             'fa' => 'fas fa-arrow-right',
             'previous' => 'Profil',
             'previous_href' => 'profile',
+            'allow_add'=>true,
+            'add'=>'une expérience'
 
 
         ]);

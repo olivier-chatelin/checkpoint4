@@ -5,10 +5,9 @@
 //     profile.innerText = e.target.value;
 // })
 
-
 const experienceContainer = document.getElementById('experience-container');
 const form = experienceContainer.dataset.prototype;
-const button = document.getElementById('button-experience');
+const button = document.getElementById('button-add');
 let index = 0;
 const regex = /__name__/g
 button.addEventListener('click',(e)=>{
