@@ -45,17 +45,17 @@ class Resume
     private $profile;
 
     /**
-     * @ORM\OneToMany(targetEntity=Experience::class, mappedBy="resume",cascade={"persist"})
+     * @ORM\OneToMany(targetEntity=Experience::class, mappedBy="resume",cascade={"persist","remove"})
      */
     private $experiences;
 
     /**
-     * @ORM\OneToMany(targetEntity=Skill::class, mappedBy="resume",cascade={"persist"})
+     * @ORM\OneToMany(targetEntity=Skill::class, mappedBy="resume",cascade={"persist","remove"})
      */
     private $skills;
 
     /**
-     * @ORM\OneToMany(targetEntity=Scholarship::class, mappedBy="resume",cascade={"persist"})
+     * @ORM\OneToMany(targetEntity=Scholarship::class, mappedBy="resume",cascade={"persist","remove"})
      */
     private $scholarships;
 

@@ -11,12 +11,9 @@
     <div class="cvMin">
         <button class="btn btn-veggie text-white upload" data-resume="{{ resume.id }}"><i class="fas fa-print"></i> Imprimer</button>
         <a class="btn btn-tangerine text-white" href="{{ path('theme',{id:resume.id}) }}" ><i class="fas fa-edit"></i> Modifier</a>
-        <form class="d-inline" method="post" action="{{ path('resume_delete', {'id': resume.id}) }}"
-              onsubmit="return confirm('Etes vous sûr.e de vouloir supprimer cet évenement');">
-            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ resume.id) }}">
-            <button class="btn btn-danger text-white"><i class="far fa-trash-alt"></i> Supprimer</button>
-        </form>
-            <div id="resume{{ resume.id }}" class="resume">
+        <button class="btn btn-danger text-white"data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="far fa-trash-alt"></i> Supprimer</button>
+        <h4 class="text-white text-center overflow-hidden d-inline">{{ resume.name }}</h4>
+        <div id="resume{{ resume.id }}" class="resume">
 
             {% if  resume.template.name == 'classic' %}
                 {% set theme = resume.template.theme %}
@@ -35,11 +32,33 @@
             {% endif %}
             </div>
         </div>
+        <!-- Modal -->
+        <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deleteModalLabel">Confirmation de suppression</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Etes-vous sûr de vouloir supprimer le cv: {{ resume.name }}?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                        <form method="post" action="{{ path('resume_delete', {'id': resume.id}) }}">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ resume.id) }}">
+                            <button class="btn btn-danger text-white"><i class="far fa-trash-alt"></i> Supprimer</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
         {% else %}
             <div class="d-flex justify-content-center">
                 <h2 class="text-white position-absolute top-50 end-50 ">Pas de CV enregistré </h2>
             </div>
-        {% endfor %}
+    {% endfor %}
     </div>
-    <a class="btn btn-veggie text-white next-step" href="{{ path('init') }}"><i class="fas fa-plus-circle"></i>  Créer un nouveu CV</a>
+    <a class="btn btn-veggie text-white next-step" href="{{ path('init') }}"><i class="fas fa-plus-circle"></i>  Nouveau CV</a>
+
 {% endblock %}
