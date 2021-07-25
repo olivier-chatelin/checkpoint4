@@ -49,6 +49,7 @@ class ThemeController extends AbstractController
             'resume' => $resumeTemplate,
             'form' => $form->createView(),
             'next' => 'Détails Personnels',
+            'fa' => 'fas fa-arrow-right',
             'previous' => 'Accueil',
             'previous_href' => 'resume_show',
 

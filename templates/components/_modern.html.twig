@@ -8,16 +8,17 @@
             </div>
             <div id="personal-details text-light">
                 <h5 class="text-light mt-4 text-center">Détails personnels <hr> </h5>
-                <p id="name" class="text-light">{{ user.firstname }} {{ user.lastname }}</p>
-                <p id="mail" class="text-light">{{ user.email}}</p>
-                <p id="tel" class="text-light">{{ resume.detail.tel }}</p>
-                <p class="text-light">
+                <p id="name" class="text-light detail"><i class="fas fa-user"></i>  {{ user.firstname }} {{ user.lastname }}</p>
+                <p id="mail" class="text-light detail"><i class="fas fa-envelope"></i>  {{ user.email}}</p>
+                <p id="tel" class="text-light detail"><i class="fas fa-phone"></i>  {{ resume.detail.tel }}</p>
+                <p class="text-light detail">
+                    <span><i class="fas fa-map-marker-alt"></i></span>
                     <span id="address"> {{ resume.detail.address }}</span>
                     <span id="zipCode">{{ resume.detail.zipCode }} </span>
                     <span id="city">{{ resume.detail.city }}</span>
                 </p>
-                <p id="linkedin" class="text-light">{{ resume.detail.linkedin }}</p>
-                <p id="github" class="text-light">{{ resume.detail.github }}</p>
+                <p id="linkedin" class="text-light detail"><i class="fab fa-linkedin"></i>  {{ resume.detail.linkedin }}</p>
+                <p id="github" class="text-light detail"><i class="fab fa-github"></i>  {{ resume.detail.github }}</p>
             </div>
             <div id="languages">
                 <h5 class="text-light mt-4 text-center">Langues<hr> </h5>

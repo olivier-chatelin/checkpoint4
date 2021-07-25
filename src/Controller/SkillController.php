@@ -37,6 +37,7 @@ class SkillController extends AbstractController
             'resume' => $resume,
             'form' => $form->createView(),
             'next' => 'Formations',
+            'fa' => 'fas fa-arrow-right',
             'previous' => 'Experiences',
             'previous_href' => 'experience',
 

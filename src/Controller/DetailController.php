@@ -36,6 +36,7 @@ class DetailController extends AbstractController
             'resume' => $resume,
             'form' => $form->createView(),
             'next' => 'Profil',
+            'fa' => 'fas fa-arrow-right',
             'previous' => 'Modèle',
             'previous_href' => 'theme',
 

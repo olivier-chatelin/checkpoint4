@@ -37,6 +37,7 @@ class HobbyController extends AbstractController
             'resume' => $resume,
             'form' => $form->createView(),
             'next' => 'Sauvegarder le cv',
+            'fa' => 'fas fa-save',
             'previous' => 'Langues',
             'previous_href' => 'language',
 

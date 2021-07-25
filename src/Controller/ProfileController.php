@@ -34,6 +34,7 @@ class ProfileController extends AbstractController
             'resume' => $resume,
             'form' => $form->createView(),
             'next' => 'Expériences',
+            'fa' => 'fas fa-arrow-right',
             'previous' => 'Details Personnels',
             'previous_href' => 'detail',
 

@@ -37,6 +37,7 @@ class ScholarshipController extends AbstractController
             'resume' => $resume,
             'form' => $form->createView(),
             'next' => 'Langues',
+            'fa' => 'fas fa-arrow-right',
             'previous' => 'Compétences',
             'previous_href' => 'skill',
 

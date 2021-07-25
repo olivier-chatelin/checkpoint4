@@ -9,8 +9,13 @@
 <div class="container d-flex">
     {% for resume in resumes %}
     <div class="cvMin">
-        <button class="btn btn-veggie text-white upload" data-resume="{{ resume.id }}">Imprimer</button>
-        <a class="btn btn-tangerine text-white" href="{{ path('theme',{id:resume.id}) }}" data-resume="{{ resume.id }}">Modifier</a>
+        <button class="btn btn-veggie text-white upload" data-resume="{{ resume.id }}"><i class="fas fa-print"></i> Imprimer</button>
+        <a class="btn btn-tangerine text-white" href="{{ path('theme',{id:resume.id}) }}" ><i class="fas fa-edit"></i> Modifier</a>
+        <form class="d-inline" method="post" action="{{ path('resume_delete', {'id': resume.id}) }}"
+              onsubmit="return confirm('Etes vous sûr.e de vouloir supprimer cet évenement');">
+            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ resume.id) }}">
+            <button class="btn btn-danger text-white"><i class="far fa-trash-alt"></i> Supprimer</button>
+        </form>
             <div id="resume{{ resume.id }}" class="resume">
 
             {% if  resume.template.name == 'classic' %}
@@ -36,5 +41,5 @@
             </div>
         {% endfor %}
     </div>
-    <a class="btn btn-veggie text-white next-step" href="{{ path('init') }}">Créer un nouveu CV</a>
+    <a class="btn btn-veggie text-white next-step" href="{{ path('init') }}"><i class="fas fa-plus-circle"></i>  Créer un nouveu CV</a>
 {% endblock %}

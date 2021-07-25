@@ -36,6 +36,7 @@ class ExperienceController extends AbstractController
             'resume' => $resume,
             'form' => $form->createView(),
             'next' => 'Compétences',
+            'fa' => 'fas fa-arrow-right',
             'previous' => 'Profil',
             'previous_href' => 'profile',
 

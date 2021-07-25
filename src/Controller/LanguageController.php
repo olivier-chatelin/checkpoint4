@@ -37,6 +37,7 @@ class LanguageController extends AbstractController
             'resume' => $resume,
             'form' => $form->createView(),
             'next' => 'Centres d\'intérêts',
+            'fa' => 'fas fa-arrow-right',
             'previous' => 'Formations',
             'previous_href' => 'scholarship',
 

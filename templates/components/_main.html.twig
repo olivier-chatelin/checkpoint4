@@ -16,9 +16,9 @@
                     {{ form_start(form) }}
                 </div>
                 {{ form_widget(form) }}
-                <button type="submit" class="btn btn-veggie text-white next-step">{{next}}</button>
+                <button type="submit" class="btn btn-veggie text-white next-step">{{next}}  <i class="{{ fa }}"></i></button>
                 {{ form_end(form) }}
-                <a href="{{ path(previous_href,{id:resume.id}) }}" class="btn btn-veggie text-white previous-step"> {{ previous }}</a>
+                <a href="{{ path(previous_href,{id:resume.id}) }}" class="btn btn-veggie text-white previous-step"><i class="fas fa-arrow-left"></i>  {{ previous }}</a>
             </div>
             <div class="col col-7 offset-1">
 
